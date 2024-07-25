@@ -16,14 +16,13 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path='/login' element={<Login />}/>
-        <Route path='/' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
-        <Route element={<PrivateRoute allowedRoles={['buyer']} />}>
+        {/* <Route element={<PrivateRoute allowedRoles={['buyer']} />}>
           <Route path="/buyer/dashboard" element={<BuyerDashboard />} />
-        </Route>
-        <Route element={<PrivateRoute allowedRoles={['seller']} />}>
+        </Route> */}
+        {/* <Route element={<PrivateRoute allowedRoles={['seller']} />}> */}
           <Route path="/seller/dashboard" element={<SellerDashboard />} />
-        </Route>
+        {/* </Route> */}
         <Route path="/seller/profile" element={<SellerProfile />}/>
         <Route path="/seller-property/:id" component={<EditProperty />} />
       </Routes>

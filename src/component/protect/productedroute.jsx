@@ -10,12 +10,9 @@ export function PrivateRoute({allowedRoles}) {
     return <Navigate to="/login" />;
   }
 
-
   if (allowedRoles && !allowedRoles.includes(userRole)) {
     return <Navigate to="/login" />;
   }
 
   return <Outlet />;
-
-  
   }

@@ -46,14 +46,8 @@ const Login = () => {
         const userRole = decodedToken.userType; // Assume the token contains a userType field
 
         localStorage.setItem('token', token); // Optional: if you want to persist the token in local storage
+        navigate("/seller/dashboard");
 
-        
-        console.log(userRole)
-        if (userRole === 'buyer') {
-          navigate("/buyer/dashboard");
-        } else if (userRole === 'seller') {
-          navigate("/seller/dashboard");
-        }
         dispatch(setAuthToken(token));
         dispatch(setUser(decodedToken)); // Assume decoded token contains user info
         dispatch(setUserRole(userRole));
@@ -81,13 +75,9 @@ const Login = () => {
 
       dispatch(setAuthToken(token));
       dispatch(setUser(decodedToken)); // Assume decoded token contains user info
-      dispatch(setUserRole(decodedToken.userType));
-
-      if (decodedToken.userType === 'buyer') {
-        navigate("/buyer/dashboard");
-      } else if (decodedToken.userType === 'seller') {
-        navigate("/seller/dashboard");
-      }
+      dispatch(setUserRole(decodedToken.userType));           
+      
+      navigate("/seller/dashboard");
 
     }
   }, [dispatch, navigate]);
@@ -97,13 +87,13 @@ const Login = () => {
       {loading ? (
         <h1 className='text-5xl flex items-center justify-center text-red-600'>Loading...</h1>
       ) : (
-        <div className="min-h-screen flex items-center justify-center bg-primary kvnkjabvav">
-          <div className="max-w-sm w-full space-y-8 p-4 bg-white rounded shadow-sm">
+        <div className="min-h-screen flex items-center justify-center bg-primary kvnkjabvav border-solid ">
+          <div className="max-w-sm w-full space-y-8 p-4 bg-gray-200 rounded shadow-sm">
             <h2 className="mt-3 text-center text-2xl font-bold">Welcome</h2>
             <p className="text-center text-gray-600 my-2">Login to your account</p>
             <form className="user" 
             onSubmit={formik.handleSubmit}>
-              <div className="mb-4">
+              <div className="mb-4"> 
                 <label htmlFor="email" className="block text-sm font-medium text-gray-600">
                   Email address:
                 </label>
@@ -162,31 +152,15 @@ const Login = () => {
                   <p className="mt-1 text-sm text-red-500">{formik.errors.password}</p>
                 )}
               </div>
-              <div className="mb-4">
-                <label htmlFor="userType" className="block text-sm font-medium text-gray-600">
-                  User Type:
-                </label>
-                <select
-                  name="userType"
-                  id="userType"
-                  className="mt-1 p-2 w-full border"
-                  value={formik.values.userType}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                >
-                  <option value="buyer">Buyer</option>
-                  <option value="seller">Seller</option>
-                </select>
-              </div>
               <div className="text-center">
                 <button
                   type="submit"
                   className="w-full px-4 py-2 text-white bg-black rounded-sm"
                 >
                   {loading ? (
-              <h1>
+              <h6>
                 Loading...
-              </h1>
+              </h6>
                   ) : (
                     "Login"
                   )}

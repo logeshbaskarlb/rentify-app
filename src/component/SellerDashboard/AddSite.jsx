@@ -110,7 +110,7 @@ const AddSite = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="w-full py-2 px-4 bg-[#111827] text-white rounded hover:bg-white "
         >
           Submit
         </button>
