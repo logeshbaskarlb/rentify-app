@@ -1,5 +1,5 @@
 import React from 'react'
-import { setLoading, setAuthToken, setUser, setUserRole, setShowPassword } from '../redux/rootSlice';
+import { setLoading, setAuthToken, setUser, setShowPassword } from '../redux/rootSlice';
 import { toast } from 'react-toastify';
 // import { isAuthenticated, login } from '../component/protect/AuthService';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,7 +19,6 @@ const Login = () => {
     initialValues: {
       email: "",
       password: "",
-      userType: "buyer",  // Default user type
     },
     validate: (values) => {
       let errors = {};
@@ -43,15 +42,13 @@ const Login = () => {
         const { token } = response.data;
 
         const decodedToken = jwtDecode(token);
-        const userRole = decodedToken.userType; // Assume the token contains a userType field
 
         localStorage.setItem('token', token); // Optional: if you want to persist the token in local storage
         navigate("/seller/dashboard");
 
         dispatch(setAuthToken(token));
         dispatch(setUser(decodedToken)); // Assume decoded token contains user info
-        dispatch(setUserRole(userRole));
-        console.log(userRole)
+
       } catch (error) {
         toast.error("Username or Password is incorrect");
         console.log(error)
@@ -71,11 +68,8 @@ const Login = () => {
     if (localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
       const decodedToken = jwtDecode(token);
-
-
       dispatch(setAuthToken(token));
-      dispatch(setUser(decodedToken)); // Assume decoded token contains user info
-      dispatch(setUserRole(decodedToken.userType));           
+      dispatch(setUser(decodedToken)); // Assume decoded token contains user info           
       
       navigate("/seller/dashboard");
 

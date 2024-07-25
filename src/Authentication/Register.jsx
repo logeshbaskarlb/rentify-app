@@ -58,7 +58,7 @@ const Register = () => {
           toast.success(response.data.message, {
             position: "top-center",
           });
-          navigate("/");
+          navigate("/login");
         }
       } catch (error) {
         console.error("Error during registration:", error.message);
@@ -243,9 +243,9 @@ const Register = () => {
               className="w-full px-4 py-2 text-white bg-black rounded-sm"
             >
               {loading ? (
-                <h1 className="text-5xl flex items-center justify-center text-red-600">
+                <h6 className="text-5xl flex items-center justify-center text-red-600">
                   Loading...
-                </h1>
+                </h6>
               ) : (
                 "Register Account"
               )}

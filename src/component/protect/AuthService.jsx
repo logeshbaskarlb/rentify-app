@@ -33,14 +33,3 @@ export const isAuthenticated = () => {
 export const logout = () => {
   localStorage.removeItem("token");
 };
-
-export const getUserRole = () => {
-  const token = localStorage.getItem('token');
-  if (!token) return null;
-  try {
-    const { userType } = jwtDecode(token);
-    return userType;
-  } catch (e) {
-    return null;
-  }
-};
